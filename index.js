@@ -12,11 +12,22 @@ import { app, server } from './Socket/socket.js';
 dotenv.config();
 
 const PORT = process.env.PORT;
+const allowedOrigins = [
+  'https://chat-frontend-pied-eight.vercel.app',
+  'http://localhost:5173'
+];
+
 app.use(cors({
-  origin: 'https://chat-frontend-pied-eight.vercel.app', 
+  origin: function (origin, callback) {
+   
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
-
 app.use(express.json());
 
 
