@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://chat-frontend-pied-eight.vercel.app',
   credentials: true,
 }));
 app.use(express.json());
